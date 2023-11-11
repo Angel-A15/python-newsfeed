@@ -1,5 +1,6 @@
 from flask import Flask
 from app.routes import home, dashboard
+from app.db import init_db
 
 def create_app(test_config=None):
   # set up app config
@@ -9,6 +10,8 @@ def create_app(test_config=None):
     SECRET_KEY='super_secret_key'
   )
 
+  init_db()
+  
   @app.route('/hello')
   def hello():
     return 'hello world'
