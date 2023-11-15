@@ -20,6 +20,6 @@ class Post(Base):
     # issue with code below, issue says error with syntax, but characters are as should be
 
     # will add up all the votes for total
-    # vote_count = column_property(
-    #     select([func.count(Vote.id)]).where(Vote.post_id == id)
-    # )
+    vote_count = column_property(
+        select(func.count(Vote.id)).where(Vote.post_id == id)
+    )
