@@ -17,8 +17,6 @@ class Post(Base):
     comments = relationship('Comment', cascade='all,delete')
     votes = relationship('Vote', cascade='all,delete')
 
-    # issue with code below, issue says error with syntax, but characters are as should be
-
     # will add up all the votes for total
     vote_count = column_property(
         select(func.count(Vote.id)).where(Vote.post_id == id)
