@@ -61,7 +61,7 @@ def login():
   session['loggedIn'] = True
 
   return jsonify(id = user.id)
-
+ 
 @bp.route('/comments', methods=['POST'])
 @login_required
 def comment():
