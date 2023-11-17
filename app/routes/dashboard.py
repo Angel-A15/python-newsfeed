@@ -3,8 +3,10 @@ from app.models import Post
 from app.db import get_db
 from app.utils.auth import login_required
 
+# routes will be prefixed with /dashboard 
 bp = Blueprint('dashboard', __name__, url_prefix='/dashboard')
 
+# route will render user dashboard
 @bp.route('/')
 @login_required
 def dash():
@@ -23,7 +25,7 @@ def dash():
         loggedIn=session.get('loggedIn')
     )
 
-
+# route will render post based on id and enable edit
 @bp.route('/edit/<id>')
 @login_required
 def edit(id):

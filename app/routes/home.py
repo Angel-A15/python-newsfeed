@@ -5,6 +5,7 @@ from app.db import get_db
 
 bp = Blueprint('home', __name__, url_prefix='/')
 
+# homepage route: render all posts
 @bp.route('/')
 def index():
     # get all posts
@@ -14,12 +15,13 @@ def index():
       .query(Post)
       .order_by(Post.created_at.desc())
       .all()
-    )
+    )    
     return render_template(
         'homepage.html',
         posts=posts
         )
 
+# redirect/user login route
 @bp.route('/login')
 def login():
   # not logged in yet
@@ -28,6 +30,7 @@ def login():
 
   return redirect('/dashboard')
 
+# single Post route: render based on user id
 @bp.route('/post/<id>')
 def single(id):
   # get single post by id

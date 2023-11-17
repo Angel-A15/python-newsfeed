@@ -6,8 +6,10 @@ from app.db import get_db
 from flask import Blueprint, request, jsonify, session
 from app.utils.auth import login_required
 
+# routes will be prefixed with /api
 bp = Blueprint('api', __name__, url_prefix='/api')
 
+# route will create new user/inform signup failed
 @bp.route('/users', methods=['POST'])
 def signup():
   data = request.get_json()
@@ -34,13 +36,14 @@ def signup():
   session['user_id'] = newUser.id
   session['loggedIn'] = True
 
-
+# logout route
 @bp.route('/users/logout', methods=['POST'])
 def logout():
   # remove session variables
   session.clear()
   return '', 204
 
+# login route for users
 @bp.route('/users/login', methods=['POST'])
 def login():
   data = request.get_json()
@@ -62,6 +65,7 @@ def login():
 
   return jsonify(id = user.id)
  
+# comment route
 @bp.route('/comments', methods=['POST'])
 @login_required
 def comment():
@@ -109,6 +113,7 @@ def upvote():
 
   return '', 204
 
+# create post route
 @bp.route('/posts', methods=['POST'])
 @login_required
 def create():
@@ -133,6 +138,7 @@ def create():
 
   return jsonify(id = newPost.id)
 
+# upvote post by id route
 @bp.route('/posts/<id>', methods=['PUT'])
 @login_required
 def update(id):
@@ -152,6 +158,7 @@ def update(id):
 
   return '', 204
 
+# delete route
 @bp.route('/posts/<id>', methods=['DELETE'])
 @login_required
 def delete(id):
