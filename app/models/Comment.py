@@ -3,6 +3,7 @@ from app.db import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
+# class punctiates comments
 class Comment(Base):
   __tablename__ = 'comments'
   id = Column(Integer, primary_key=True)

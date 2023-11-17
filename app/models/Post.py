@@ -4,6 +4,7 @@ from .Vote import Vote
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, select, func
 from sqlalchemy.orm import relationship, column_property
 
+# class punctiates posts, user edit, and enable upvotes
 class Post(Base):
     __tablename__ = 'posts'
     id = Column(Integer, primary_key=True)

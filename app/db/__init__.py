@@ -12,6 +12,7 @@ engine = create_engine(getenv('DB_URL'), echo=True, pool_size=20, max_overflow=0
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
+# prevent from multiple sessions from running
 def init_db(app):
     Base.metadata.create_all(engine)
 
@@ -22,6 +23,7 @@ def get_db():
         # store db connection in app contect
         g.db = Session()
 
+# close running session
 def close_db(e=None):
     db = g.pop('db', None)
 

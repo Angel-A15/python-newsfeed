@@ -6,7 +6,7 @@ from sqlalchemy.orm import validates
 
 salt = bcrypt.gensalt()
 
-
+# authentication for user credentials
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
