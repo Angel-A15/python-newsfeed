@@ -15,7 +15,6 @@ def create_app(test_config=None):
   app.jinja_env.filters['format_date'] = filters.format_date
   app.jinja_env.filters['format_plural'] = filters.format_plural
 
-  init_db(app)
 
   @app.route('/hello')
   def hello():
@@ -25,5 +24,7 @@ def create_app(test_config=None):
   app.register_blueprint(home)
   app.register_blueprint(dashboard)
   app.register_blueprint(api)
+
+  init_db(app)
   
   return app
